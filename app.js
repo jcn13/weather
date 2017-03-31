@@ -35,7 +35,8 @@ function fecthFunc(destination, type, days){
       key1 = data.Key
       fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/${days}day/${key1}?apikey=${apiKey2}&metric=${type}`)
       .then((res) => res.json())
-      .then((data) => {     
+      .then((data) => {
+      console.log(data)     
         show(data)        
       })   
     })
@@ -50,47 +51,33 @@ function weekday(code){
 
 function moods(data){
   let icon
-  let sunny = [1, 2, 3]
-  let cloudy = [7, 6, 8]
-  let showers = [12, 13, 14]
-  let tStorms = [15, 16, 17]
-  let flurries = [19, 20, 21]
-  let snow = [22, 23]
-  let ice = [24, 25, 26, 29]
-  if(sunny.includes(data)){
-    icon = 1    
-  }
-  if (data === 4){
-    icon = '1-1'
-  }
-  if (data === 5){
-    icon = '1-2'
-  }
-  if(cloudy.includes(data)){
-    icon = 2   
-  }
-  if (data === 11){
-    icon = '2-1'
-  }
-  if(showers.includes(data)){
-    icon = 3    
-  }
-  if(tStorms.includes(data)){
-    icon = 4    
-  }
-  if (data === 18){
-    icon = '4-1'
-  }
-  if(flurries.includes(data)){
-    icon = 5    
-  }
-  if(snow.includes(data)){
-    icon = 6    
-  }
-  if(ice.includes(data)){
-    icon = 7    
-  }
-  return `<img src="images/${icon}.png" alt=" ">`
+  let n
+  const weatherIcons = {
+   a_0 : [1, 2, 3],
+   a_1 : [4],
+   a_2 : [5],
+   a_3 : [7, 6, 8],
+   a_4 : [11],
+   a_5 : [12, 13, 14],
+   a_6 : [15, 16, 17],
+   a_7 : [18],
+   a_8 : [19, 20, 21],
+   a_9 : [22, 23],
+   a_10 : [24, 25, 26, 29]
+  } 
+  for(i = 0; i<= 10; i++){
+    n = 'weatherIcons.a_' + i
+    for (let wthr in weatherIcons){
+      let arr = weatherIcons[wthr]
+      console.log(arr)            
+      if(arr.includes(data)){
+        console.log(n)
+        icon = i
+        return `<img src="images/${icon}.png" alt=" ">`
+      }
+      i++
+    }      
+  }   
 }
 
 function show (data) {    
