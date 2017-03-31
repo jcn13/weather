@@ -64,20 +64,16 @@ function moods(data){
    a_8 : [19, 20, 21],
    a_9 : [22, 23],
    a_10 : [24, 25, 26, 29]
-  } 
-  for(i = 0; i<= 10; i++){
-    n = 'weatherIcons.a_' + i
-    for (let wthr in weatherIcons){
-      let arr = weatherIcons[wthr]
-      console.log(arr)            
+  }
+  let i = 0 
+  for (let wthr in weatherIcons){
+      let arr = weatherIcons[wthr]    
       if(arr.includes(data)){
-        console.log(n)
         icon = i
         return `<img src="images/${icon}.png" alt=" ">`
       }
       i++
-    }      
-  }   
+    }         
 }
 
 function show (data) {    
